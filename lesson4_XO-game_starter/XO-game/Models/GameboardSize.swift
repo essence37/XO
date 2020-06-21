@@ -10,8 +10,8 @@ import Foundation
 
 public struct GameboardSize {
     
-    public static let columns = 5
-    public static let rows = 5
+    public static let columns = 3
+    public static let rows = 3
     
     private init() { }
 }

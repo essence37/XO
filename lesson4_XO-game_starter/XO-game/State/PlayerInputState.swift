@@ -15,10 +15,16 @@ public class PlayerInputState: GameState {
     public let player: Player
     public let markViewPrototype: MarkView
     
+    public var playerInputMoves: [GameboardPosition] = []
+    public var markViewsPrototype: [MarkView] = []
+    
     private(set) weak var gameViewController: GameViewController?
     private(set) weak var playerVsComputerViewController: PlayerVsComputerViewController?
     private(set) weak var gameboard: Gameboard?
     private(set) weak var gameboardView: GameboardView?
+    
+    private var blindStepsCount: Int = 0
+    private let maxBlindStepsCount: Int = Int(ceil(Double(GameboardSize.columns*GameboardSize.rows/2)))
     
     init(player: Player, markViewPrototype: MarkView, gameViewController: GameViewController, gameboard: Gameboard, gameboardView: GameboardView) {
         self.player = player
@@ -76,6 +82,42 @@ public class PlayerInputState: GameState {
 //        self.gameboardView?.placeMarkView(markView, at: position)
         self.gameboardView?.placeMarkView(markViewPrototype.copy(), at: position)
         self.isCompleted = true
+    }
+    
+    public func addMarks(at position: GameboardPosition) {
+        
+        Log(.playerInput(player: self.player, position: position))
+        
+        if let gameboardView = self.gameboardView
+            , gameboardView.canPlaceMarkView(at: position) {
+            
+//            self.gameboard?.setPlayer(self.player, at: position)
+//            markViewsPrototype.append(markViewPrototype.copy())
+//            playerInputMoves.append(position)
+            
+            let command = Command(position: position, player: self.player, gameboard: self.gameboard!, gameboardView: gameboardView)
+            Invoker.shared.addCommand(command)
+        } else {
+            
+//            self.gameboard?.clearPlayer(at: position)
+//            self.gameboardView?.removeMarkView(at: position)
+//            self.gameboard?.setPlayer(self.player, at: position)
+//
+//            markViewsPrototype.append(markViewPrototype.copy())
+//            playerInputMoves.append(position)
+            
+            let command = Command(position: position, player: player, gameboard: self.gameboard!, gameboardView: self.gameboardView!)
+            Invoker.shared.addCommand(command)
+        }
+        if blindStepsCount == maxBlindStepsCount {
+            blindStepsCount = 0
+            self.isCompleted = true
+        }
+        blindStepsCount += 1
+    }
+    
+    public func showMarks(_ marksViews: [MarkView], at positions: [GameboardPosition]) {
+        self.gameboardView?.placeMarksViews(marksViews, at: positions)
     }
     
     public func computerAddMark() -> GameboardPosition {

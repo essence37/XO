@@ -13,4 +13,6 @@ public protocol GameState {
     func begin()
     func addMark(at position: GameboardPosition)
     func computerAddMark() -> GameboardPosition
+    func addMarks(at position: GameboardPosition)
+    func showMarks(_ marksViews: [MarkView], at positions: [GameboardPosition])
 }

@@ -20,6 +20,10 @@ public final class Gameboard {
         positions[position.column][position.row] = player
     }
     
+    public func clearPlayer(at position: GameboardPosition) {
+        positions[position.column][position.row] = nil
+    }
+    
     public func clear() {
         self.positions = initialPositions()
     }

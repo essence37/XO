@@ -47,6 +47,10 @@ public class GameEndedState: GameState {
     
     public func addMark(at position: GameboardPosition) {   }
     
+    public func addMarks(at position: GameboardPosition) {   }
+    
+    public func showMarks(_ marksViews: [MarkView], at positions: [GameboardPosition]) { }
+    
     public func computerAddMark() -> GameboardPosition {
         let position = GameboardPosition(column: Int.random(in: 1...GameboardSize.columns),
                                          row: Int.random(in: 1...GameboardSize.rows))

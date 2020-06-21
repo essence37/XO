@@ -53,6 +53,18 @@ public class GameboardView: UIView {
         addSubview(markView)
     }
     
+    public func placeMarksViews(_ marksViews: [MarkView], at positions: [GameboardPosition]) {
+        let dictionary = Dictionary(uniqueKeysWithValues: zip(marksViews, positions))
+        for dict in dictionary {
+            if self.canPlaceMarkView(at: dict.value) != true {
+                removeMarkView(at: dict.value)
+            }
+            updateFrame(for: dict.key, at: dict.value)
+            markViewForPosition[dict.value] = dict.key
+            addSubview(dict.key)
+        }
+    }
+    
     public func removeMarkView(at position: GameboardPosition) {
         guard let markView = markViewForPosition[position] else {
             return

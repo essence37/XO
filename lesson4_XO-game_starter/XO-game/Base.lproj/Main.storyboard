@@ -143,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FlK-xv-cci">
-                                <rect key="frame" x="150.5" y="621" width="74" height="26"/>
+                                <rect key="frame" x="150.5" y="616" width="74" height="31"/>
                                 <inset key="contentEdgeInsets" minX="12" minY="4" maxX="12" maxY="4"/>
                                 <state key="normal" title="Restart"/>
                                 <connections>
@@ -163,10 +163,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LYG-3D-cJV">
-                                <rect key="frame" x="0.0" y="158" width="375" height="441"/>
+                                <rect key="frame" x="0.0" y="158" width="375" height="436"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FpC-lq-59T" customClass="GameboardView" customModule="XO_game" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="49" width="343" height="343"/>
+                                        <rect key="frame" x="16" y="46.5" width="343" height="343"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="FpC-lq-59T" secondAttribute="height" id="j79-XI-cai"/>
@@ -186,17 +186,28 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rUV-de-cMr">
+                                <rect key="frame" x="6" y="616" width="138.5" height="32"/>
+                                <segments>
+                                    <segment title="Classic"/>
+                                    <segment title="Blind"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="FlK-xv-cci" firstAttribute="leading" secondItem="rUV-de-cMr" secondAttribute="trailing" constant="6" id="1pa-83-dFh"/>
+                            <constraint firstItem="rUV-de-cMr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="6" id="2hM-2S-UWc"/>
                             <constraint firstItem="FlK-xv-cci" firstAttribute="top" secondItem="LYG-3D-cJV" secondAttribute="bottom" constant="22" id="7Cg-Od-ODs"/>
                             <constraint firstItem="5M8-Sh-pRf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="AYe-Ek-i4a"/>
+                            <constraint firstItem="rUV-de-cMr" firstAttribute="top" secondItem="LYG-3D-cJV" secondAttribute="bottom" constant="22" id="BYz-G8-vNh"/>
                             <constraint firstItem="FlK-xv-cci" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Frx-qz-lKB"/>
                             <constraint firstItem="LYG-3D-cJV" firstAttribute="top" secondItem="5M8-Sh-pRf" secondAttribute="bottom" constant="8" id="GaF-PX-RbP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FlK-xv-cci" secondAttribute="bottom" constant="20" id="XVv-6S-n3b"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LSW-na-Of7" secondAttribute="trailing" constant="44" id="att-TZ-kx7"/>
                             <constraint firstItem="lyE-7i-9c4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="eA7-42-PYI"/>
                             <constraint firstItem="5M8-Sh-pRf" firstAttribute="top" secondItem="lyE-7i-9c4" secondAttribute="bottom" constant="20" id="gzs-I8-cAh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rUV-de-cMr" secondAttribute="bottom" constant="20" id="h85-1E-b9Y"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LYG-3D-cJV" secondAttribute="trailing" id="l3w-q7-ZAq"/>
                             <constraint firstItem="lyE-7i-9c4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="44" id="nrD-pT-cfQ"/>
                             <constraint firstItem="LSW-na-Of7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="tji-xt-eHD"/>
@@ -208,6 +219,7 @@
                     <navigationItem key="navigationItem" id="I0w-Xo-raU"/>
                     <connections>
                         <outlet property="firstPlayerTurnLabel" destination="lyE-7i-9c4" id="1eC-po-kqk"/>
+                        <outlet property="gameMode" destination="rUV-de-cMr" id="BHF-m1-VEu"/>
                         <outlet property="gameboardView" destination="FpC-lq-59T" id="oJQ-bB-6DM"/>
                         <outlet property="restartButton" destination="FlK-xv-cci" id="AAG-Vv-7b0"/>
                         <outlet property="secondPlayerTurnLabel" destination="LSW-na-Of7" id="udX-YE-30Y"/>
